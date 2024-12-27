@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Define the shape type as rectangle -->
+    <solid android:color="@android:color/transparent" />
+    <stroke
+        android:width="20dp"
+    android:color="@android:color/black" />
+    <corners android:radius="16dp" />
+</shape>

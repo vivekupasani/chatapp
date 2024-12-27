@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/Background"
     android:fitsSystemWindows="true"
-    android:padding="16dp"
     tools:context=".ui.fragment.Profile">
 
     <!-- Data Loading Layout -->
@@ -15,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -179,7 +178,7 @@
         android:id="@+id/dataLoaded"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,15 +189,23 @@
             android:id="@+id/profileTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
+            android:layout_marginStart="16dp"
             android:text="Profile"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnSignOut"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/baseline_logout_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
         <!-- Profile Image -->
         <de.hdodenhof.circleimageview.CircleImageView
@@ -220,6 +227,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/blue_secondary"
             android:paddingHorizontal="24dp"
             android:text="Edit Profile"
             android:textColor="#ffff"
@@ -233,7 +241,9 @@
             android:id="@+id/naming"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@color/chatBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"
@@ -277,7 +287,9 @@
             android:id="@+id/phoneNumberCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@color/chatBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"
@@ -321,7 +333,9 @@
             android:id="@+id/aboutCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@color/chatBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/chats"
-        android:name="com.vivekupasani.single.ui.fragment.Chats"
+        android:name="com.vivekupasani.chatapp.ui.fragment.Chats"
         android:label="fragment_chats"
         tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/status"
-        android:name="com.vivekupasani.single.ui.fragment.Status"
+        android:name="com.vivekupasani.chatapp.ui.fragment.Status"
         android:label="fragment_status"
         tools:layout="@layout/fragment_status" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.vivekupasani.single.ui.fragment.Profile"
+        android:name="com.vivekupasani.chatapp.ui.fragment.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

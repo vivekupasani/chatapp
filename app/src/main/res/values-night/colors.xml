@@ -6,7 +6,8 @@
     <color name="blue_secondary_variant">#026796</color>
     <color name="white">#121212</color>
     <color name="black">#E0E0E0</color>
-    <color name="chatBackground">#303030</color>
+    <color name="chatBackground">#151515</color>
     <color name="Background">#121212</color>
-    <color name="shimmerColor">#424242</color> <!-- Adjusted for dark mode -->
+    <color name="shimmerColor">#424242</color>
+    <color name="indicatorColor">#0280bb</color>
 </resources>

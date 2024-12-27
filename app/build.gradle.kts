@@ -1,15 +1,15 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") // Added for Firebase
 }
 
 android {
-    namespace = "com.vivekupasani.single"
+    namespace = "com.vivekupasani.chatapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.vivekupasani.single"
+        applicationId = "com.vivekupasani.chatapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -31,18 +31,21 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
 
-    packagingOptions{
+    packagingOptions {
         exclude("META-INF/DEPENDENCIES")
     }
 }
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -59,11 +62,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    // Navigation Control
-    val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // OTP view
     implementation("com.github.mukeshsolanki:android-otpview-pinview:2.1.2")
@@ -85,12 +83,18 @@ dependencies {
     // Swipe Refresh Layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
-    //Dependencies for notification
-
-    //retrofit api
+    // Retrofit for API calls
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // Dexter for runtime permissions
     implementation("com.karumi:dexter:6.2.3")
+
+    // Google Auth Library
     implementation("com.google.auth:google-auth-library-oauth2-http:1.19.0")
-    
+
+    implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 }
+
+// Apply the Google Services plugin
+apply(plugin = "com.google.gms.google-services")

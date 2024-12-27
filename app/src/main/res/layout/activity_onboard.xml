@@ -11,14 +11,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="262dp"
-        android:layout_height="271dp"
+        android:layout_width="232dp"
+        android:layout_height="231dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
         app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/onboard" />
+        app:srcCompat="@drawable/profile"/>
 
     <TextView
         android:id="@+id/textView"
@@ -43,6 +44,7 @@
         android:textColor="#ffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/blue_secondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

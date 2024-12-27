@@ -4,9 +4,10 @@
     <color name="blue_primary_variant">#1565C0</color>
     <color name="blue_secondary">#03A9F4</color>
     <color name="blue_secondary_variant">#0288D1</color>
-    <color name="white">#FFFFFF</color> <!-- Adjusted for light mode -->
-    <color name="black">#000000</color> <!-- Adjusted for light mode -->
-    <color name="chatBackground">#F4F2F2</color> <!-- Light background color -->
-    <color name="Background">#FFFFFF</color> <!-- Light mode background -->
-    <color name="shimmerColor">#E0E0E0</color> <!-- Adjusted for light mode shimmer -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="chatBackground">#F4F2F2</color>
+    <color name="Background">#FFFFFF</color>
+    <color name="shimmerColor">#E0E0E0</color>
+    <color name="indicatorColor">#03A9F4</color>
 </resources>

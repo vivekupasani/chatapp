@@ -7,162 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/Background"
     android:fitsSystemWindows="true"
-    android:padding="16dp"
     tools:context=".ui.Activity.OtherUserProfile">
-
-    <!-- Data Loading Layout -->
-<!--    <com.facebook.shimmer.ShimmerFrameLayout-->
-<!--        android:id="@+id/dataLoding"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:visibility="gone">-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/shimmerProfileTitle"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:background="@color/shimmerColor"-->
-<!--                android:gravity="center"-->
-<!--                android:text=""-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="24sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                android:id="@+id/shimmerProfileImage"-->
-<!--                android:layout_width="150dp"-->
-<!--                android:layout_height="151dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@color/shimmerColor"-->
-<!--                app:civ_border_color="@color/black"-->
-<!--                app:civ_border_width="0.2dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/shimmerProfileTitle" />-->
-
-
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/shimmerNameCard"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                app:cardBackgroundColor="@color/shimmerColor"-->
-<!--                app:cardCornerRadius="10dp"-->
-<!--                app:cardElevation="4dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/shimmerProfileImage">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:padding="12dp">-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/shimmerFullName"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="8dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:backgroundTint="@color/shimmerColor"-->
-<!--                        android:clickable="false"-->
-<!--                        android:editable="false"-->
-<!--                        android:focusable="false"-->
-<!--                        android:singleLine="true"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="16sp"-->
-<!--                        android:textStyle="normal" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/shimmerEmailCard"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                app:cardBackgroundColor="@color/shimmerColor"-->
-<!--                app:cardCornerRadius="10dp"-->
-<!--                app:cardElevation="4dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/shimmerNameCard">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:padding="12dp">-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/shimmerEmailAddress"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="8dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:backgroundTint="@color/shimmerColor"-->
-<!--                        android:clickable="false"-->
-<!--                        android:editable="false"-->
-<!--                        android:focusable="false"-->
-<!--                        android:singleLine="true"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="16sp"-->
-<!--                        android:textStyle="normal" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/shimmerAboutCard"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                app:cardBackgroundColor="@color/shimmerColor"-->
-<!--                app:cardCornerRadius="10dp"-->
-<!--                app:cardElevation="4dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/shimmerEmailCard">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:padding="12dp">-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/shimmerAbout"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:backgroundTint="@color/shimmerColor"-->
-<!--                        android:clickable="false"-->
-<!--                        android:editable="false"-->
-<!--                        android:focusable="false"-->
-<!--                        android:inputType="textMultiLine"-->
-<!--                        android:minLines="3"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="16sp" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
 
     <!-- Data Loaded Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,23 +26,25 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="387dp"
             android:src="@drawable/ic_back_btn"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/black" />
 
         <TextView
-            android:id="@+id/profileTitle"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
             android:text="Profile"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
         <!-- Profile Image -->
         <de.hdodenhof.circleimageview.CircleImageView
@@ -212,14 +58,16 @@
             app:civ_border_width="0.5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileTitle" />
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <!-- Card for Name -->
         <androidx.cardview.widget.CardView
             android:id="@+id/naming"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
             app:cardBackgroundColor="@color/chatBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"
@@ -263,7 +111,9 @@
             android:id="@+id/phoneNumberCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
             app:cardBackgroundColor="@color/chatBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"
@@ -307,7 +157,9 @@
             android:id="@+id/aboutCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
             app:cardBackgroundColor="@color/chatBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"

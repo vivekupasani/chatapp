@@ -24,7 +24,7 @@
         android:layout_height="65dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        app:cardBackgroundColor="@color/blue_primary"
+        app:cardBackgroundColor="@color/blue_secondary"
         app:cardCornerRadius="50dp"
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,15 +43,16 @@
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView4">
 
-        <com.mikelau.shimmerrecyclerviewx.ShimmerRecyclerViewX
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/statusRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            app:shimmer_demo_child_count="15"
             app:shimmer_demo_layout="@layout/demo_status"
             tools:listitem="@layout/each_status_of_user" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -64,6 +65,17 @@
         android:text="No status\nis currently available"
         android:textColor="@color/shimmer_color"
         android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

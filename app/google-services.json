@@ -1,21 +1,41 @@
 {
   "project_info": {
-    "project_number": "616044693358",
-    "project_id": "single-5664b",
-    "storage_bucket": "single-5664b.appspot.com"
+    "project_number": "1098557461237",
+    "firebase_url": "https://link-up-34d72-default-rtdb.firebaseio.com",
+    "project_id": "link-up-34d72",
+    "storage_bucket": "link-up-34d72.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:616044693358:android:178529263923768d64e37f",
+        "mobilesdk_app_id": "1:1098557461237:android:c6f729129c6d8a42fcabbc",
         "android_client_info": {
-          "package_name": "com.vivekupasani.single"
+          "package_name": "com.vivekupasani.chatapp"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCFaoTLK6EJQUKqJiB3xe2jrF07IFGTtFk"
+          "current_key": "AIzaSyCj43Alx6o3pPAfXm3iilXM4r7se09dPbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098557461237:android:5b7d3d1b097e28bdfcabbc",
+        "android_client_info": {
+          "package_name": "com.vivekupasani.linkup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj43Alx6o3pPAfXm3iilXM4r7se09dPbE"
         }
       ],
       "services": {

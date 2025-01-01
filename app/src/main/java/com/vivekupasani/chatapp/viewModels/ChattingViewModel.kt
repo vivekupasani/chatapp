@@ -4,23 +4,26 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.vivekupasani.chatapp.models.message
 
 class ChattingViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var firebase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private var storage: FirebaseStorage = FirebaseStorage.getInstance()
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firebase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val storage: FirebaseStorage = FirebaseStorage.getInstance()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     lateinit var senderRoom: String
     lateinit var receiverRoom: String
 
-    private var _msgSend = MutableLiveData<Boolean>()
+    private val _msgSend = MutableLiveData<Boolean>()
     val msgSend: LiveData<Boolean> = _msgSend
 
-    private var _error = MutableLiveData<String>()
+    private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
     private val _messageList = MutableLiveData<List<message>>()
@@ -33,24 +36,25 @@ class ChattingViewModel(application: Application) : AndroidViewModel(application
     }
 
     private fun displayChats() {
-        // Fetch messages without coroutines, using addOnCompleteListener
         firebase.getReference("Chats")
             .child(senderRoom)
             .child("Messages")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val messages = mutableListOf<message>()
-                    val snapshot = task.result
-                    for (messageSnapshot in snapshot.children) {
-                        val messageItem = messageSnapshot.getValue(message::class.java)
-                        messageItem?.let { messages.add(it) }
+            .addValueEventListener(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val messages = mutableListOf<message>()
+                        for (messageSnapshot in snapshot.children) {
+                            val messageItem = messageSnapshot.getValue(message::class.java)
+                            messageItem?.let { messages.add(it) }
+                        }
+                        _messageList.value = messages
                     }
-                    _messageList.value = messages
-                } else {
-                    _error.value = "Error fetching messages: ${task.exception?.message}"
-                }
-            }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        _error.value = "Error fetching messages: ${error.message}"
+                    }
+                },
+            )
     }
 
     fun sendMessage(senderId: String, receiverId: String, messageText: String, imageUri: Uri?) {
@@ -69,7 +73,6 @@ class ChattingViewModel(application: Application) : AndroidViewModel(application
                             storageRef.downloadUrl.addOnCompleteListener { downloadTask ->
                                 if (downloadTask.isSuccessful) {
                                     val imageUrl = downloadTask.result.toString()
-                                    //now store message on firebase
                                     sendMessageToFirebase(
                                         senderId,
                                         receiverId,
@@ -101,7 +104,6 @@ class ChattingViewModel(application: Application) : AndroidViewModel(application
     ) {
         val messageModel = message(messageText, senderId, imageUrl, System.currentTimeMillis())
 
-        // Push the message to both sender and receiver rooms in Firebase
         firebase.getReference("Chats")
             .child(senderRoom)
             .child("Messages")
@@ -116,12 +118,6 @@ class ChattingViewModel(application: Application) : AndroidViewModel(application
                         .setValue(messageModel)
                         .addOnCompleteListener { receiverTask ->
                             if (receiverTask.isSuccessful) {
-                                // Update the message list immediately
-                                val currentMessages =
-                                    _messageList.value?.toMutableList() ?: mutableListOf()
-                                currentMessages.add(messageModel)
-                                _messageList.value = currentMessages
-
                                 _msgSend.value = true
                             } else {
                                 _error.value =

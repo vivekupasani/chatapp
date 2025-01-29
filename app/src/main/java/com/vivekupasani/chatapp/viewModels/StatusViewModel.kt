@@ -12,7 +12,9 @@ import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.vivekupasani.chatapp.models.Users
 import com.vivekupasani.chatapp.models.status
-
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 class StatusViewModel(application: Application) : AndroidViewModel(application) {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -106,34 +108,38 @@ class StatusViewModel(application: Application) : AndroidViewModel(application) 
 
         firestore.collection("Users").document(currentUserId).get()
             .addOnSuccessListener { documentSnapshot ->
-                val user = documentSnapshot.toObject<Users>()
+                val user = documentSnapshot.toObject(Users::class.java)
                 val friendsList = user?.friends ?: emptyList()
 
-                val allStatuses = mutableListOf<status>()
+                val statusRef = database.getReference("Status")
 
-                database.getReference("Status").get()
-                    .addOnSuccessListener { dataSnapshot ->
+                statusRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val allStatuses = mutableListOf<status>()
+
                         for (friendUserId in dataSnapshot.children) {
                             val statusesSnapshot = friendUserId.child("Statuses")
 
                             if (friendUserId.key == currentUserId || friendUserId.key in friendsList) {
-                                val latestStatusSnapshot = statusesSnapshot.children.firstOrNull()
-                                latestStatusSnapshot?.let {
-                                    val userStatus = it.getValue(status::class.java)
+                                for (statusSnapshot in statusesSnapshot.children) {
+                                    val userStatus = statusSnapshot.getValue(status::class.java)
                                     userStatus?.let { statusObj ->
                                         allStatuses.add(statusObj)
                                     }
                                 }
                             }
                         }
-                        _statusList.value = allStatuses
+
+                        _statusList.postValue(allStatuses) // Ensuring LiveData updates UI
                     }
-                    .addOnFailureListener { e ->
-                        _error.value = "Error fetching statuses: ${e.localizedMessage}"
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        _error.postValue("Error fetching statuses: ${databaseError.message}")
                     }
+                })
             }
             .addOnFailureListener { e ->
-                _error.value = "Error fetching user data: ${e.localizedMessage}"
+                _error.postValue("Error fetching user data: ${e.localizedMessage}")
             }
     }
 

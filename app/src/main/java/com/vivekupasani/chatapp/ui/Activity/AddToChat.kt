@@ -55,7 +55,7 @@ class AddToChat : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     // Observe the FriendViewModel for friend request updates
     private fun observeFriendViewModel() {
         friendViewModel.sendRequest.observe(this, Observer {
-            Toast.makeText(this, "Friend Request Sent", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Friend Request Sent", Toast.LENGTH_SHORT).show()
         })
         friendViewModel.error.observe(this, Observer { errorMessage ->
             errorMessage?.let {

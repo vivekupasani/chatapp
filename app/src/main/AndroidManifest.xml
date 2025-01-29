@@ -9,9 +9,8 @@
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Single"
         tools:targetApi="s">
+        <activity
+            android:name=".ui.Activity.Settings"
+            android:exported="false" />
         <activity
             android:name=".ui.Activity.OtherUserProfile"
             android:exported="false" />
@@ -69,15 +71,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
-<!--        <service-->
-<!--            android:name=".notification.FirebaseMessaging"-->
-<!--            android:exported="false"-->
-<!--            tools:ignore="MissingClass">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-<!--            </intent-filter>-->
-<!--        </service>-->
     </application>
 
 </manifest>

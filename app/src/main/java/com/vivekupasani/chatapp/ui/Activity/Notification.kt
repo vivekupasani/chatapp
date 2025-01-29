@@ -84,15 +84,11 @@ class Notification : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     private fun observeFriendsViewModel() {
         viewModel.acceptedRequest.observe(this, Observer {
 //            Toast.makeText(this, "Friend request accepted", Toast.LENGTH_SHORT).show()
-            recyclerViewX.hideShimmerAdapter()
-            refreshLayout.isRefreshing = false
         })
 
         viewModel.error.observe(this, Observer { error ->
             Log.e("NotificationActivity", "Error: $error")
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-            recyclerViewX.hideShimmerAdapter()
-            refreshLayout.isRefreshing = false
         })
     }
 

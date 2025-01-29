@@ -33,12 +33,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     packagingOptions {
@@ -62,9 +62,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    // OTP view
-    implementation("com.github.mukeshsolanki:android-otpview-pinview:2.1.2")
+    testImplementation ("junit:junit:4.13.2")
 
     // Rounded profile
     implementation("de.hdodenhof:circleimageview:3.1.0")
@@ -72,9 +70,6 @@ dependencies {
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    // Lottie Animation
-    val lottieVersion = "3.4.0"
-    implementation("com.airbnb.android:lottie:$lottieVersion")
 
     // Shimmer Effect for layouts
     implementation("com.facebook.shimmer:shimmer:0.1.0")
@@ -82,13 +77,6 @@ dependencies {
 
     // Swipe Refresh Layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
-
-    // Retrofit for API calls
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-
-    // Dexter for runtime permissions
-    implementation("com.karumi:dexter:6.2.3")
 
     // Google Auth Library
     implementation("com.google.auth:google-auth-library-oauth2-http:1.19.0")

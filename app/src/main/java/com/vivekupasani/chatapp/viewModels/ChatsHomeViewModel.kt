@@ -27,30 +27,25 @@ class ChatsHomeViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun getUsers() {
         currentUserId?.let { uid ->
-            // Fetch the user data from Firestore asynchronously using addOnCompleteListener
-            firestore.collection("Users").get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Successfully fetched the data
-                        val querySnapshot = task.result
-                        val users = querySnapshot?.toObjects(Users::class.java) ?: emptyList()
-
-                        // Filter users: exclude the current user and include only friends
-                        val filteredList = users.filter { user ->
-                            user.userId != uid && user.friends.contains(uid)
-                        }
-
-                        // Post the filtered list to the LiveData
-                        _userList.value = filteredList
-                    } else {
-                        // Handle failure in fetching users
-                        Log.e("ChatsHomeViewModel", "Error fetching users", task.exception)
-                        _error.value = "Error fetching users: ${task.exception?.message}"
-                    }
+            firestore.collection("Users").addSnapshotListener { querySnapshot, error ->
+                if (error != null) {
+                    Log.e("ChatsHomeViewModel", "Error fetching users", error)
+                    _error.value = "Error fetching users: ${error.message}"
+                    return@addSnapshotListener
                 }
+
+                val users = querySnapshot?.toObjects(Users::class.java) ?: emptyList()
+
+                // Filter users: exclude the current user and include only friends
+                val filteredList = users.filter { user ->
+                    user.userId != uid && user.friends.contains(uid)
+                }
+
+                _userList.postValue(filteredList) // Update LiveData with real-time data
+            }
         } ?: run {
-            // Handle the case where the user is not authenticated
             _error.value = "User not authenticated"
         }
     }
+
 }

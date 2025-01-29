@@ -47,8 +47,9 @@ class NotificationAdapter(var userList: ArrayList<Users>) :
             holder.apply {
                 binding.AddToChat.visibility = View.INVISIBLE
                 binding.AddedToChat.visibility = View.VISIBLE
+                onAcceptBtnClick?.invoke(currentUser)
             }
-            onAcceptBtnClick?.invoke(currentUser)
+
         }
     }
 

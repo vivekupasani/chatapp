@@ -11,40 +11,40 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="232dp"
-        android:layout_height="231dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
         app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/profile"/>
+        app:srcCompat="@drawable/vivek"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
         android:gravity="center"
         android:text="Connect easily with \nyour family and friends \nover countries"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/ahead"
         android:layout_width="327dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/blue_secondary"
         android:text="Start Messaging"
         android:textColor="#ffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/blue_secondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

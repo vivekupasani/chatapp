@@ -43,6 +43,11 @@ class SignIn : AppCompatActivity() {
             onGoToSignUpBtnClick()
         }
 
+        binding.forgotPassword.setOnClickListener {
+            val intent = Intent(this,forgotPassword::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setUpObservers() {

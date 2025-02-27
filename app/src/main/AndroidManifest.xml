@@ -23,6 +23,9 @@
         android:theme="@style/Theme.Single"
         tools:targetApi="s">
         <activity
+            android:name=".ui.Activity.forgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".ui.Activity.Settings"
             android:exported="false" />
         <activity

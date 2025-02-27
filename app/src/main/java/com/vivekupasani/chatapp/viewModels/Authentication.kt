@@ -23,6 +23,27 @@ class Authentication(application: Application) : AndroidViewModel(application) {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    private val _emailSent = MutableLiveData<String>()
+    val emailSend : LiveData<String> = _emailSent
+
+
+    fun forgotPassword(email: String) {
+        if (email.isEmpty()) {
+            _errorMessage.postValue("Email is required.")
+            return
+        }
+
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _emailSent.postValue("Password reset email sent. Check your inbox 📩")
+                } else {
+                    _errorMessage.postValue("Failed to send reset email: ${task.exception?.message}")
+                }
+            }
+    }
+
+
     fun signUpUser(email: String, password: String) {
         // Sign up user asynchronously with a listener
         auth.createUserWithEmailAndPassword(email, password)

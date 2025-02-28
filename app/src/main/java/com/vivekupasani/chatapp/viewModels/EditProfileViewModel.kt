@@ -34,43 +34,47 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 token = task.result
-                if (imageUri != null) {
-                    // Upload new profile image if it exists
-                    val storageRef = storage.getReference("Profile Pics").child("$userId.jpg")
-                    storageRef.putFile(imageUri).addOnCompleteListener { uploadTask ->
-                        if (uploadTask.isSuccessful) {
-                            storageRef.downloadUrl.addOnCompleteListener { downloadTask ->
-                                if (downloadTask.isSuccessful) {
-                                    val profilePicUrl = downloadTask.result.toString()
 
-                                    // Create user with new profile image URL
-                                    val updatedUser = Users(
-                                        userId = userId,
-                                        email = email,
-                                        about = about,
-                                        password = password,
-                                        userName = username,
-                                        profilePicURL = profilePicUrl,
-                                        token = token ?: ""
-                                    )
-                                    updateUsersProfile(userRef, updatedUser)
+                // Fetch existing friend lists before updating the profile
+                userRef.get().addOnCompleteListener { documentTask ->
+                    if (documentTask.isSuccessful) {
+                        val document = documentTask.result
+                        val friendList = document?.get("friends") as? List<String> ?: emptyList()
+                        val requestFriendList = document?.get("friendRequests") as? List<Map<String, Any>> ?: emptyList()
+
+                        if (imageUri != null) {
+                            // Upload new profile image if it exists
+                            val storageRef = storage.getReference("Profile Pics").child("$userId.jpg")
+                            storageRef.putFile(imageUri).addOnCompleteListener { uploadTask ->
+                                if (uploadTask.isSuccessful) {
+                                    storageRef.downloadUrl.addOnCompleteListener { downloadTask ->
+                                        if (downloadTask.isSuccessful) {
+                                            val profilePicUrl = downloadTask.result.toString()
+
+                                            // Create user with new profile image URL and preserve friends list
+                                            val updatedUser = Users(
+                                                userId = userId,
+                                                email = email,
+                                                about = about,
+                                                password = password,
+                                                userName = username,
+                                                profilePicURL = profilePicUrl,
+                                                token = token ?: "",
+                                                friends = friendList,
+                                                friendRequests = requestFriendList
+                                            )
+                                            updateUsersProfile(userRef, updatedUser)
+                                        } else {
+                                            _error.value = "Failed to get profile image URL: ${downloadTask.exception?.message}"
+                                        }
+                                    }
                                 } else {
-                                    _error.value = "Failed to get profile image URL: ${downloadTask.exception?.message}"
+                                    _error.value = "Failed to upload profile image: ${uploadTask.exception?.message}"
                                 }
                             }
                         } else {
-                            _error.value = "Failed to upload profile image: ${uploadTask.exception?.message}"
-                        }
-                    }
-                } else {
-                    // Fetch the current profile picture if no new image is uploaded
-                    userRef.get().addOnCompleteListener { documentTask ->
-                        if (documentTask.isSuccessful) {
-                            val document = documentTask.result
+                            // If no new image, use the existing profile picture URL
                             val currentProfilePicURL = document?.getString("profilePicURL").orEmpty()
-                            val friendList = document?.get("friends") as? List<String> ?: emptyList()
-                            val requestFriendList = document?.get("friendRequests") as? List<Map<String, Any>> ?: emptyList()
-
 
                             val updatedUser = Users(
                                 userId = userId,
@@ -84,9 +88,9 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
                                 friendRequests = requestFriendList
                             )
                             updateUsersProfile(userRef, updatedUser)
-                        } else {
-                            _error.value = "Failed to fetch current profile: ${documentTask.exception?.message}"
                         }
+                    } else {
+                        _error.value = "Failed to fetch current profile: ${documentTask.exception?.message}"
                     }
                 }
             } else {

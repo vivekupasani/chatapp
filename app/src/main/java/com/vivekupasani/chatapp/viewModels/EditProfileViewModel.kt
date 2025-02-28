@@ -68,6 +68,9 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
                         if (documentTask.isSuccessful) {
                             val document = documentTask.result
                             val currentProfilePicURL = document?.getString("profilePicURL").orEmpty()
+                            val friendList = document?.get("friends") as? List<String> ?: emptyList()
+                            val requestFriendList = document?.get("friendRequests") as? List<Map<String, Any>> ?: emptyList()
+
 
                             val updatedUser = Users(
                                 userId = userId,
@@ -76,7 +79,9 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
                                 password = password,
                                 userName = username,
                                 profilePicURL = currentProfilePicURL,
-                                token = token ?: ""
+                                token = token ?: "",
+                                friends = friendList,
+                                friendRequests = requestFriendList
                             )
                             updateUsersProfile(userRef, updatedUser)
                         } else {

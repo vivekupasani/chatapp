@@ -53,7 +53,7 @@
 
         <ImageView
             android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_height="33dp"
             android:layout_gravity="center"
             android:src="@drawable/chat" />
     </androidx.cardview.widget.CardView>
@@ -80,7 +80,6 @@
             tools:listitem="@layout/each_user_in_chats" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    >
 
     <TextView
         android:id="@+id/emptyList"
